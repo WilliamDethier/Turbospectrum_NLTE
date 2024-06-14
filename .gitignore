@@ -36,3 +36,22 @@ babsma_lu
 *.exe
 *.out
 *.app
+
+# William files
+Turbospectrum_NLTE_version.docx
+Turbospectrum_NLTE_version.odt
+*.opa
+*.flx.gz
+*.krz
+*.bsyn
+*.modopac
+*.interpolopac
+*.dat
+*.txt
+/COM/models/
+COM/contopac/
+interpolator/model/
+Utilities/env/
+Utilities/vald3line-BPz-freeformat_linux
+Utilities/sample_lte_linelist
+Utilities/sample_lte_linelist_orig

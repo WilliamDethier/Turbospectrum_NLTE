@@ -52,13 +52,21 @@
 * Use 12 Gauss-Radau points
       logical extrap
       integer nangles
-      parameter (nangles=12)
+      !parameter (nangles=12)
+      parameter (nangles=48)
       integer iout(nangles)
       real muout(nangles),yout(nangles),isurf(nangles,lpoint),
      &     icsurf(nangles,lpoint),uin(nrays)
-      data muout /0.010018, 0.052035, 0.124619, 0.222841, 0.340008,
-     &            0.468138, 0.598497, 0.722203, 0.830825, 0.916958,
-     &            0.974726, 1.000000/
+      data muout /0.0001, 0.0002, 0.0003, 0.0004, 0.0005,
+     &            0.0006, 0.0007, 0.0008, 0.0009, 0.001,
+     &            0.0015, 0.002, 0.003, 0.004, 0.005, 0.006,
+     &            0.007, 0.008, 0.009, 0.01, 0.015, 0.02,
+     &            0.03, 0.04, 0.05, 0.06, 0.07, 0.08,
+     &            0.09, 0.1, 0.11, 0.12 , 0.13, 0.14,
+     &            0.15, 0.17, 0.18, 0.19 , 0.2, 0.25,
+     &            0.3, 0.4, 0.5, 0.6 , 0.7, 0.8,
+     &            0.9, 1.0/
+
 
 * special version NLTE
       logical nlte
@@ -292,7 +300,7 @@ cc        enddo
 *
       if (iint.gt.0) then
         write(46,1111) muout(1:nangles)
-1111    format ('# mu-points ',12(1x,1pe13.6))
+1111    format ('# mu-points ',48(1x,1pe13.6))
       endif
       do j=1,maxlam
         plezflux=1.-prof(j)
@@ -306,7 +314,7 @@ cc        enddo
           write(46,1965) xlambda(j),plezflux,fluxme(j),
      &                   (isurf(k,j),isurf(k,j)/icsurf(k,j),k=1,nangles)
 cc     &                   icenter(j),iprf(j)
-1965      format(f11.3,1x,f10.5,1x,1pe12.5,12(1x,1pe12.5,1x,0pf8.5))
+1965      format(f11.3,1x,f10.5,1x,1pe12.5,48(1x,1pe12.5,1x,0pf8.5))
         endif
       enddo
 

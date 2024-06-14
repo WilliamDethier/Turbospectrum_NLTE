@@ -7,12 +7,10 @@
 # atomic number / name / (n)lte / model atom / departure file / binary or ascii departure file
 #
 # path for model atom files     ! don't change this line !
-~/Documents/GitHub/Turbospectrum/Turbospectrum2020/DATA/MODELATOMS/
+~/Documents/spectrum_model/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
 #
 # path for departure files      ! don't change this line !
-~/Documents/GitHub/Turbospectrum/Turbospectrum2020/COM/TEST-data/test_sun/
+~/Documents/spectrum_model/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
 #
 # atomic (N)LTE setup
-1	'H'	'lte'	'atom.h20'	'nlte_dep_h_12000_t5777g44m00_staggerAv3d_job0.dat' 'ascii'
-20      'Ca'	'lte'	'atom.ca105b'   'NLTEgrid_Ca_Sun.ascii' 'ascii'
-26	'Fe'	'lte'	'atom.fe607a'	'NLTEgrid_Fe_Sun.ascii'	'ascii'
+11	'Na'	'nlte'	'atom.na_qmh'	'interp/dany/4969g+4.51z-0.07abu6.0000_coef.dat'	'ascii'

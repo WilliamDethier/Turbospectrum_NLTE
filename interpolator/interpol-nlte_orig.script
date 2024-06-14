@@ -18,78 +18,39 @@
 # model8: Teffup loggup zup
 ######################################################################################################
 
-set model_path = model/Dany #needs updated by the user, points to where MARCS models are
-set nlte_path = ../COM/DATA/ATOMS   #needs updated by the user, points to where NLTE data is (binary file of departure coefficients and auxiliary data file used to navigate it)
-set dest_path = dany
-#set model_path = model/  #needs updated by the user, points to where MARCS models are
-#set nlte_path = ../COM/DATA/ATOMS   #needs updated by the user, points to where NLTE data is (binary file of departure coefficients and auxiliary data file used to navigate it)
-
-#set aux_file_length = `awk 'END{print NR-1}' ${nlte_path}/Na/auxData_Na_MARCS_Feb-20-2022.dat`  #434967#9 #needs update by the user, lets interpolator know how large to make array for reading aux file
-set aux_file_length = `awk 'END{print NR-1}' ${nlte_path}/Na_new/auxData_Na_MARCS_Jul-14-2023.dat`  #434967#9 #needs update by the user, lets interpolator know how large to make array for reading aux file
-
+set model_path = ../../input_files/model_atmospheres/1D  #needs updated by the user, points to where MARCS models are
+set nlte_path = ../../input_files/nlte_data  #needs updated by the user, points to where NLTE data is (binary file of departure coefficients and auxiliary data file used to navigate it)
+set aux_file_length = 9 #needs update by the user, lets interpolator know how large to make array for reading aux file
 
 #MARCS binary format (.true.) or MARCS ASCII web format (.false.)?
 set marcs_binary = '.false.'
 
 #enter here the values requested for the interpolated model, aburef is the target abundance value of the element for departure coefficients
-#foreach Tref   ( 6100 )
-#foreach loggref ( +4.2 )
-#foreach zref ( +0.00 )
-#foreach aburef ( 6.1700 )
-
-#Dream
-# 5190 4653 6460 6820 5499 6364 5636 6354 5576 5793 5552 4425 4910 6050
-# 4.545 4.6 4.03 4.1 4.044 4.291 4.49 4.285 4.52 4.281 4.3437 4.633 4.6 4.34
-#foreach Tref   ( 6050 )
-#foreach loggref ( +4.34 )
-#foreach zref ( +0.00 )
-
-# HD189733
-foreach Tref   ( 4969 )
-foreach loggref ( +4.51 )
-foreach zref ( -0.07 )
-
-# WASP20
-#foreach Tref   ( 5940 )
-#foreach loggref ( +4.231 )
-#foreach zref ( +0.00 )
-
-#WASP31
-#foreach Tref   ( 6302 )
-#foreach loggref ( +4.310 )
-#foreach zref ( -0.08 )
-
-
-foreach aburef (6.0000 6.0100 6.0200 6.0299 6.0300 6.0301 6.0400 6.0500 6.0600 6.0700 6.0800 6.0900 6.1000)
-
-#set modele_out = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}.interpol
-#set modele_out2 = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}.alt
-set modele_out = ../COM/models/${dest_path}/${Tref}g${loggref}z${zref}abu${aburef}.interpol
-set modele_out2 = ../COM/models/${dest_path}/${Tref}g${loggref}z${zref}abu${aburef}.alt
-#set modele_out3 = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}_coef.dat
-#set modele_out3 = ../COM/DATA/ATOMS/Na/interp/${Tref}g${loggref}z${zref}abu${aburef}_coef.dat
-set modele_out3 = ../COM/DATA/ATOMS/Na_new/interp/${Tref}g${loggref}z${zref}abu${aburef}_coef.dat
+foreach Tref   ( 5777 )
+foreach loggref ( +4.40 )
+foreach zref ( +0.00 )
+foreach aburef ( 12.00 )
+set modele_out = Testout/${Tref}g${loggref}z${zref}abu${aburef}.interpol
+set modele_out2 = Testout/${Tref}g${loggref}z${zref}abu${aburef}.alt
+set modele_out3 = Testout/${Tref}g${loggref}z${zref}abu${aburef}_coef.dat
 #set modele_out = scratch
 
 # grid values bracketting the interpolation point (should be automatised!)
-set Tefflow = 4750
-set Teffup  = 5000
-set logglow = +4.5
-set loggup  = +5.0
-set zlow    = -0.25
+set Tefflow = 5777
+set Teffup  = 5777
+set logglow = +4.4
+set loggup  = +4.4
+set zlow    = +0.00
 set zup     = +0.00
-set alflow  = +0.10
+set alflow  = +0.00
 set alfup   = +0.00
 set xit     = 01
 
 
-
 #set the file name of the NLTE binary file
-#set nlte_binary = ${nlte_path}/Na/NLTEgrid4TS_NA_MARCS_Feb-20-2022.bin
-#set nlte_model_list = ${nlte_path}/Na/auxData_Na_MARCS_Feb-20-2022.dat
+set nlte_binary = ${nlte_path}/H/output_NLTEgrid4TS_May-21-2021.bin
+set nlte_model_list = ${nlte_path}/H/auxData_NLTEgrid4TS_May-21-2021_solar_1D.dat
 
-set nlte_binary = ${nlte_path}/Na_new/NLTEgrid4TS_Na_MARCS_Jul-14-2023.bin
-set nlte_model_list = ${nlte_path}/Na_new/auxData_Na_MARCS_Jul-14-2023.dat
 
 #spherical models
 #set model1 = s${Tefflow}_g${logglow}_m1.0_t${xit}_st_z${zlow}_a${alflow}_c+0.00_n+0.00_o${alflow}_r+0.00_s+0.00.mod
@@ -110,6 +71,7 @@ set model5 = p${Teffup}_g${logglow}_m0.0_t${xit}_st_z${zlow}_a${alflow}_c+0.00_n
 set model6 = p${Teffup}_g${logglow}_m0.0_t${xit}_st_z${zup}_a${alfup}_c+0.00_n+0.00_o${alfup}_r+0.00_s+0.00.mod
 set model7 = p${Teffup}_g${loggup}_m0.0_t${xit}_st_z${zlow}_a${alflow}_c+0.00_n+0.00_o${alflow}_r+0.00_s+0.00.mod
 set model8 = p${Teffup}_g${loggup}_m0.0_t${xit}_st_z${zup}_a${alfup}_c+0.00_n+0.00_o${alfup}_r+0.00_s+0.00.mod
+
 
 #### the test option is set to .true. if you want to plot comparison model (model_test)
 set test = '.false.'

@@ -473,7 +473,7 @@ c          write(*,*) 'new NLTE array: ', nnbvals(:,1,1)
       
       write(*,80) temp_ref,logg_ref,z_ref,abu_ref
  80   format('Interpolation point : Teff=',f8.0,'  logg=',f5.2,
-     &     '  z=',f6.2,'  abund=',f6.2)
+     &     '  z=',f6.2,'  abund=',f8.5)
       
 **************check if files are length and depth ref compatible *******
       
