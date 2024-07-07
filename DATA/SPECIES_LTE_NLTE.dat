@@ -7,10 +7,10 @@
 # atomic number / name / (n)lte / model atom / departure file / binary or ascii departure file
 #
 # path for model atom files     ! don't change this line !
-~/Documents/spectrum_model/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
+~/Desktop/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
 #
 # path for departure files      ! don't change this line !
-~/Documents/spectrum_model/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
+~/Desktop/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
 #
 # atomic (N)LTE setup
-11	'Na'	'nlte'	'atom.na_qmh'	'interp/dany/4969g+4.51z-0.07abu6.0000_coef.dat'	'ascii'
+11	'Na'	'nlte'	'atom.na_qmh'	'interp/dany/4969g+4.51z-0.07abu6.0529_coef.dat'	'ascii'

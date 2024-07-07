@@ -45,9 +45,13 @@ set marcs_binary = '.false.'
 #foreach zref ( +0.00 )
 
 # HD189733
+# 4969
+# 5019
+# 4919
 foreach Tref   ( 4969 )
 foreach loggref ( +4.51 )
 foreach zref ( -0.07 )
+
 
 # WASP20
 #foreach Tref   ( 5940 )
@@ -60,7 +64,7 @@ foreach zref ( -0.07 )
 #foreach zref ( -0.08 )
 
 
-foreach aburef (6.0000 6.0100 6.0200 6.0299 6.0300 6.0301 6.0400 6.0500 6.0600 6.0700 6.0800 6.0900 6.1000)
+foreach aburef (6.0521 6.0522 6.0523 6.0524 6.0526 6.0527 6.0528 6.0529)
 
 #set modele_out = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}.interpol
 #set modele_out2 = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}.alt

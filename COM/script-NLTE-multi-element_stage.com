@@ -392,10 +392,141 @@ set dpath = models/dany/
 #set MODEL = 4969g+4.51z-0.07abu6.0700.interpol
 #set MODEL = 4969g+4.51z-0.07abu6.0800.interpol
 #set MODEL = 4969g+4.51z-0.07abu6.0900.interpol
-set MODEL = 4969g+4.51z-0.07abu6.1000.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.1000.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0575.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0521.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0522.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0523.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0524.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0526.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0527.interpol
+#set MODEL = 4969g+4.51z-0.07abu6.0528.interpol
+set MODEL = 4969g+4.51z-0.07abu6.0529.interpol
 
 
 
+#set MODEL = 4919g+4.51z-0.07abu5.5000.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.6000.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.7000.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.8000.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9000.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9500.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9790.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9795.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9785.interpol
+
+#set MODEL = 4919g+4.51z-0.07abu5.9786.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9787.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9788.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9789.interpol
+# set MODEL = 4919g+4.51z-0.07abu5.9791.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9792.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9793.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9794.interpol
+
+
+
+#set MODEL = 4919g+4.51z-0.07abu5.9900.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9910.interpol
+# set MODEL = 4919g+4.51z-0.07abu5.9920.interpol
+# set MODEL = 4919g+4.51z-0.07abu5.9930.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9940.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9950.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9960.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9970.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9980.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9987.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9988.interpol
+#set MODEL = 4919g+4.51z-0.07abu5.9989.interpol
+
+#set MODEL = 4919g+4.51z-0.07abu5.9990.interpol
+
+#set MODEL = 4919g+4.51z-0.07abu6.0010.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0020.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0030.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0040.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0050.interpol
+
+
+#set MODEL = 4919g+4.51z-0.07abu6.0000.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0100.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0200.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0299.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0300.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0301.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0400.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0500.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0600.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0700.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0800.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.0900.interpol
+#set MODEL = 4919g+4.51z-0.07abu6.1000.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.0000.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0100.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0200.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0300.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0400.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0500.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0600.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0700.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0800.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.0900.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1000.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1100.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1200.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1258.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1259.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1250.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1260.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1261.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1262.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1263.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1264.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1265.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1266.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1267.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1268.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1269.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1270.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1271.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1272.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1273.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1274.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1275.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1280.interpol
+
+
+#set MODEL = 5019g+4.51z-0.07abu6.1290.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1291.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1292.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1293.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1294.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1295.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1296.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1297.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1298.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1299.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1300.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1301.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1302.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1303.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1304.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1305.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1306.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1307.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1308.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1309.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1310.interpol
+
+#set MODEL = 5019g+4.51z-0.07abu6.1400.interpol
+#set MODEL = 5019g+4.51z-0.07abu6.1500.interpol
 
 
 # WASP20
@@ -522,7 +653,7 @@ time /home/wdethier/Desktop/Turbospectrum_NLTE/exec-ifx/bsyn_lu <<EOF
 ###########
 # file containing NLTE information (species and associated files)
 #
-'NLTEINFOFILE:'  'DATA/SPECIES_LTE_NLTE_new.dat'
+'NLTEINFOFILE:'  'DATA/SPECIES_LTE_NLTE.dat'
 #
 ###########
 # if present these files will be used to compute the spectrum in a number of 
