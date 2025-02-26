@@ -18,9 +18,9 @@
 # model8: Teffup loggup zup
 ######################################################################################################
 
-set model_path = model/Dany #needs updated by the user, points to where MARCS models are
+set model_path = model/marcs_st_mod #needs updated by the user, points to where MARCS models are
 set nlte_path = ../COM/DATA/ATOMS   #needs updated by the user, points to where NLTE data is (binary file of departure coefficients and auxiliary data file used to navigate it)
-set dest_path = dany
+set dest_path = HD209458
 #set model_path = model/  #needs updated by the user, points to where MARCS models are
 #set nlte_path = ../COM/DATA/ATOMS   #needs updated by the user, points to where NLTE data is (binary file of departure coefficients and auxiliary data file used to navigate it)
 
@@ -48,10 +48,14 @@ set marcs_binary = '.false.'
 # 4969
 # 5019
 # 4919
-foreach Tref   ( 4969 )
-foreach loggref ( +4.51 )
-foreach zref ( -0.07 )
+#foreach Tref   ( 4969 )
+#foreach loggref ( +4.51 )
+#foreach zref ( -0.07 )
 
+# HD209458
+foreach Tref   ( 6126 )
+foreach loggref ( +4.368 )
+foreach zref ( +0.04 )
 
 # WASP20
 #foreach Tref   ( 5940 )
@@ -64,7 +68,7 @@ foreach zref ( -0.07 )
 #foreach zref ( -0.08 )
 
 
-foreach aburef (6.0521 6.0522 6.0523 6.0524 6.0526 6.0527 6.0528 6.0529)
+foreach aburef (6.1700)
 
 #set modele_out = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}.interpol
 #set modele_out2 = synthetic_interpol/${Tref}g${loggref}z${zref}abu${aburef}.alt
@@ -76,13 +80,13 @@ set modele_out3 = ../COM/DATA/ATOMS/Na_new/interp/${Tref}g${loggref}z${zref}abu$
 #set modele_out = scratch
 
 # grid values bracketting the interpolation point (should be automatised!)
-set Tefflow = 4750
-set Teffup  = 5000
-set logglow = +4.5
-set loggup  = +5.0
-set zlow    = -0.25
-set zup     = +0.00
-set alflow  = +0.10
+set Tefflow = 6000
+set Teffup  = 6250
+set logglow = +4.0
+set loggup  = +4.5
+set zlow    = +0.00
+set zup     = +0.25
+set alflow  = +0.00
 set alfup   = +0.00
 set xit     = 01
 
@@ -147,3 +151,15 @@ EOF
 end
 end 
 end
+
+
+## grid values bracketting the interpolation point (should be automatised!)
+#set Tefflow = 6000
+#set Teffup  = 6250
+#set logglow = +4.0
+#set loggup  = +4.5
+#set zlow    = -0.25
+#set zup     = +0.00
+#set alflow  = +0.10
+#set alfup   = +0.00
+#set xit     = 01

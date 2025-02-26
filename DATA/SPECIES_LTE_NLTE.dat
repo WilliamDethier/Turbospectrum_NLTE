@@ -13,4 +13,4 @@
 ~/Desktop/Turbospectrum_NLTE/COM/DATA/ATOMS/Na_new/
 #
 # atomic (N)LTE setup
-11	'Na'	'nlte'	'atom.na_qmh'	'interp/dany/4969g+4.51z-0.07abu6.0529_coef.dat'	'ascii'
+11	'Na'	'nlte'	'atom.na_qmh'	'interp/HD209458/6126g+4.368z+0.04abu6.3300_coef.dat'	'ascii'
