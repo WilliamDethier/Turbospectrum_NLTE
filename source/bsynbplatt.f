@@ -1,4 +1,4 @@
-      SUBROUTINE BSYNBplatt(NALLIN)
+      SUBROUTINE BSYNBplatt(nangles,muoutp)
 *
 *-----------------------------------------------------------------------
 *
@@ -48,25 +48,16 @@
       real fcfc(lpoint),y1cy1c(lpoint),y1y1(nrays,lpoint),
      & xlm(lpoint)
 
-* mu-points for intensity output.
-* Use 12 Gauss-Radau points
+* icsurf is for continuum intensity and isurf for absolute intensity
+* muoutp are mu-points for output intensities
+* Use 12 Gauss-Radau points by default, if nangles < 0,
+* Otherwise use nangles mu-points from input
+*     
       logical extrap
       integer nangles
-      !parameter (nangles=12)
-      parameter (nangles=48)
       integer iout(nangles)
-      real muout(nangles),yout(nangles),isurf(nangles,lpoint),
-     &     icsurf(nangles,lpoint),uin(nrays)
-      data muout /0.0001, 0.0002, 0.0003, 0.0004, 0.0005,
-     &            0.0006, 0.0007, 0.0008, 0.0009, 0.001,
-     &            0.0015, 0.002, 0.003, 0.004, 0.005, 0.006,
-     &            0.007, 0.008, 0.009, 0.01, 0.015, 0.02,
-     &            0.03, 0.04, 0.05, 0.06, 0.07, 0.08,
-     &            0.09, 0.1, 0.11, 0.12 , 0.13, 0.14,
-     &            0.15, 0.17, 0.18, 0.19 , 0.2, 0.25,
-     &            0.3, 0.4, 0.5, 0.6 , 0.7, 0.8,
-     &            0.9, 1.0/
-
+      real muout(nangles),yout(nangles),uin(nrays),muoutp(nangles)
+      real, allocatable :: isurf(:,:), icsurf(:,:)
 
 * special version NLTE
       logical nlte
@@ -86,6 +77,14 @@
 *
 * Initiate angle quadrature points 
 *
+      do i=1,nangles
+!        muout(i)=muoutp(nangles+1-i)
+        muout(i)=muoutp(i)
+      enddo
+
+      allocate(isurf(nangles,lpoint))
+      allocate(icsurf(nangles,lpoint))
+
       NMY=NMX
       CALL GAUSI(NMY,0.,1.,WMY,XMY)
       DO 1 I=1,NMY

@@ -7,9 +7,13 @@ SOURCE = source
 include1 = ../$(SOURCE)/spectrum.inc
 include2 = ../$(SOURCE)/tsuji.par
 
-OPT1 = -L/usr/lib -fconvert=big-endian -O3 -fno-automatic -mcmodel=medium -std=legacy -Wall -Wsurprising
-LINKOPT = -L/usr/lib -fconvert=big-endian -O3 -fno-automatic -mcmodel=medium -std=legacy -Wall -Wsurprising
+#LINKOPT = -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -fconvert=big-endian -O3 -fno-automatic -mcmodel=small -std=legacy -Wall -Wsurprising
 
+#LINKOPT =  -fconvert=big-endian -O3 -fno-automatic -Wall -Wsurprising -ffpe-trap=zero,invalid -fbacktrace -std=legacy
+
+LINKOPT =  -fconvert=big-endian -O3 -fno-automatic -fbacktrace -std=legacy -mcmodel=small
+# -fno-sign-zero
+#-ffpe-trap=zero,invalid 
 
 babsma_luobj =  \
       ../$(SOURCE)/absko.f \
@@ -53,6 +57,7 @@ babsma_luobj =  \
       ../$(SOURCE)/molecpartf.f \
       ../$(SOURCE)/ludcmp.f \
       ../$(SOURCE)/lubksb.f \
+      ../$(SOURCE)/lowercase_conversion.f90 \
       ../$(SOURCE)/molfys.f 
 
 eqwidt_luobj = \
