@@ -166,6 +166,8 @@
       integer datnoffil,datncore,datmaxfil,datmihal,datiint
       real    isoch(1000),isochfact(1000),datisoch(1000),
      &        datisochfact(1000)
+      integer datnangles,nangles
+      real    datmuoutp(30),muoutp(30)
       real    datxmyc,datscattfrac
       character*128 datfilmet,datfilmol,datfilwavel
       character*256 datlinefil(maxfil),datdetout,
@@ -198,7 +200,7 @@
      &                 datnlte,datmodelatomfile,datdeparturefile,
      &                 datdepartbin,datcontmaskfile,datlinemaskfile,
      &                 datsegmentsfile,datnlteinfofile,
-     &                 databund_source
+     &                 databund_source,datnangles,datmuoutp
 
       real amass(92,0:250),abund(92),fixabund(92),
      &         isotopfrac(92,0:250)
@@ -336,6 +338,9 @@ ccc      external commn_handler
           stop 'Stop in bsyn'
         endif
       endif
+! mu-points for intensity output
+      nangles=datnangles
+      muoutp=datmuoutp
 
       print*,tsuji,filmet(1:index(filmet,' ')),
      &       filmol(1:index(filmol,' '))
@@ -715,28 +720,31 @@ c      call eqmol_pe(t(20),pg(20),pgpg,pe(20),
 c     &      1.,1.,k,niter,skiprelim)
 
 * Test Plez 11-May-2018
-      do 43 k=ntau,1,-1
-*      do 43 k=1,ntau
+      do k=ntau,1,-1
+*      do k=1,ntau
 * end of test
 
         if ((abs((t(k)-tp)/t(k)).lt.3.e-2).and.
      &      (abs((pe(k)-pep)/pe(k)).lt.0.6)) then
           skiprelim=.true.
         else
-          skiprelim=.false.
+!          skiprelim=.false.
+! try to skip it all the time (BPz 27-Jan-2025)
+          skiprelim=.true.
         endif
         tp=t(k)
         pep=pe(k)
         call eqmol_pe(t(k),pg(k),pgpg,pe(k),1.,1.,k,niter,skiprelim)
-c        print*,'eqmol_pe calculated ',niter,' iterations'
-c        print*,k,pg(k),pgpg,ro(k),rhotsuji
+        print*,'eqmol_pe calculated ',niter,' iterations'
+        print*,k,pg(k),pgpg,ro(k),rhotsuji
 
-ccc      write(*,'(i3,15e10.3,/,3x,15e10.3)') k,presmo
+!        write(*,'(i3,15e10.3,/,3x,15e10.3)') k,presmo
 *
         PH(K)=presneutral(k,1)
         phe(k)=presneutral(k,2)
         ph2(k)=partryck(k,2)
-43    continue
+      enddo
+
       abundh=1./xmytsuji
       print*,'new abundh:',abundh
 *
@@ -1703,9 +1711,9 @@ cc         CALL VOIGT(A(j),V,HVOIGT)
 *
       if (.not.multidump) then
         if (spherical) then
-          CALL BSYNB(NALLIN)
+          call bsynb(nangles,muoutp)
         else
-          CALL BSYNBplatt(NALLIN)
+          call bsynbplatt(nangles,muoutp)
         endif
       else
 * dump opacities for MULTI input. 20 juin 1994.

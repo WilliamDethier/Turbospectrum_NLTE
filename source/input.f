@@ -13,11 +13,13 @@
       character*256 linefil,detout,inatom,inmod,inabun,inspec,
      &              outfil,mongofil,filterfil,continopac,inpmod,
      &              modelatomfile,departurefile,nlteinfofile,
-     &              contmaskfile,linemaskfile,segmentsfile
+     &              contmaskfile,linemaskfile,segmentsfile,
+     &              listoflistfile,mupointsfile
       character*12 abund_source,haha
       logical tsuji,spherical,limbdark,abfind,multidump,xifix,mrxf,
      &        hydrovelo,pureLTE,departbin,nlte
-      integer iint,k
+      integer iint,k,nangles
+      real    muoutp(30)
       real    isoch(1000),isochfact(1000),xic,xmyc,scattfrac
       doubleprecision xl1,xl2,del,xlmarg,xlboff,resolution
       common/inputdata/mmaxfil,tsuji,filmet,filmol,noffil,
@@ -33,7 +35,8 @@
      &                 iint,xmyc,scattfrac,
      &                 pureLTE,nlte,modelatomfile,departurefile,
      &                 departbin,contmaskfile,linemaskfile,
-     &                 segmentsfile,nlteinfofile,abund_source
+     &                 segmentsfile,nlteinfofile,abund_source,
+     &                 nangles,muoutp
 
       common/species/atominclude
       data atominclude 
@@ -47,8 +50,17 @@
      &    'Lu','Hf','Ta','W ','Re','Os','Ir','Pt','Au','Hg',
      &    'Tl','Pb','Bi','Po','At','Rn','Fr','Ra','Ac','Th',
      &    'Pa','U ','  ','  ','  ','  ','  ','  ','  ','  ' /
+!
+! Default mu-points for intensity profiles (12 Gauss-Radau points)
+      data muoutp /0.010018, 0.052035, 0.124619, 0.222841, 0.340008,
+     &            0.468138, 0.598497, 0.722203, 0.830825, 0.916958,
+     &            0.974726, 1.000000, 18*0.0/
+!
+! default value of nangles for the 12 Gauss-Radau mu-points (PLATO)
+      nangles = 12
+
 *
-      abund_source='magg'
+      abund_source='asp2007'
       linemaskfile=' '
       contmaskfile=' '
       segmentsfile=' '
@@ -183,7 +195,27 @@ ccc      inatom='DATA/atomdata-v12.1'
         read(iread,*) taum
         read(iread,*) ncore
         read(iread,*) diflog
+      else if (keyword(1:17).eq.'LIST_OF_LINELISTS') then
+!
+! This keyword signals a file (listoflistfile) that contains
+! a list of line lists to be used. BPlez 29-0ct-2024
+!
+        read(charvalue,10) listoflistfile
+        open(100, file = listoflistfile, status = 'old')
+        i=0
+        do while (.true.)
+          read(100,10,end=102) oneline
+          if (oneline(1:1).ne.'#') then
+            i=i+1        
+            read(oneline,'(a)') linefil(i)
+          endif
+        enddo
+ 102    noffil = i
       else if (keyword(1:6).eq.'NFILES') then
+!
+! This is the historical way of inputing line lists:
+! The list of file is given in the script
+!
         read(charvalue,*) noffil
         i=0
         do while (i.lt.noffil)
@@ -256,6 +288,12 @@ ccc        read(iread,*) filterfil
         endif
       else if (keyword(1:10).eq.'COS(THETA)') then
         read(charvalue,*) xmyc
+      else if (keyword(1:9).eq.'MU-POINTS') then
+        read(charvalue,10) mupointsfile
+        open(77,file=mupointsfile,status='old')
+        read(77,*) nangles
+        read(77,*) (muoutp(i),i=1,nangles)
+        close(77)
       else if (keyword(1:9).eq.'SCATTFRAC') then
 ! fraction of line opacity to include in scattering
         read(charvalue,*) scattfrac

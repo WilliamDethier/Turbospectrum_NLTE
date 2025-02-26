@@ -118,7 +118,7 @@ C
 C  Paul Barklem, Uppsala, August 2003
 C
       IMPLICIT NONE
-      INTEGER N, NLO(*), NUP(*), NLEVELS, I, J, NBF, NL, FF,FN
+      INTEGER N, NLO(*), NUP(*), NLEVELS, I, J, NBF, NL
       PARAMETER (NLEVELS = 100)  
       PARAMETER (NBF = 6)  
       REAL NH, NHE, NE, T, CONTIN, DOP, TOTAL, fact
@@ -127,7 +127,6 @@ C
       REAL NLTE(NLEVELS), NPOP(*), NP(NLEVELS), b_departure(*)
       REAL Z, H, C, HC, K, KT, LINE, SIGMA, CHI, SF, PROF
       REAL IONH, X, HFNM, FNM(NLEVELS,NLEVELS), HLINOP, HBF
-      REAL TS, TF
       REAL*8 WAVE, WAVEH(*), REDCUT, source_f
       REAL*8 EHYD(NLEVELS), CONTH(NLEVELS), WCALC, D, WSTAR, TAPER
       LOGICAL FIRST,contonly,lineonly,nlte_flag,nlte_species
@@ -150,15 +149,18 @@ C
         EHYD(6) = 106632.160D0
         EHYD(7) = 107440.444D0
         EHYD(8) = 107965.051D0
-        DO 1 I = 9, NLEVELS
- 1      EHYD(I) = 109678.764D0 - 109677.576D0/(I*I)
-        DO 2 I = 1, NLEVELS
- 2      CONTH(I) = 109678.764D0 - EHYD(I)
+        DO I = 9, NLEVELS
+          EHYD(I) = 109678.764D0 - 109677.576D0/dfloat(I*I)
+        enddo
+        DO I = 1, NLEVELS
+          CONTH(I) = 109678.764D0 - EHYD(I)
+        enddo
         FIRST = .FALSE.
-        DO 4 I = 1, NLEVELS-1
-        DO 3 J = I+1, NLEVELS
- 3      FNM(I,J) = HFNM(I,J)
- 4      CONTINUE
+        DO  I = 1, NLEVELS-1
+          DO J = I+1, NLEVELS
+            FNM(I,J) = HFNM(I,J)
+          enddo
+        enddo
       ENDIF 
 C
 C  Compute partition function and populations in LTE.
@@ -172,32 +174,34 @@ C
      *   GOTO 16
       Z = 0.
       KT = K*T
-      DO 10 I = 1, NLEVELS
-      W(I) = WCALC(NH, NE, NHE, FLOAT(I), T)
-      G(I) = 2.*I*I
-      WGE(I) = W(I)*G(I)*DEXP(-HC*EHYD(I)/KT)
- 10   Z = Z + WGE(I)
-      DO 15 I = 1, NLEVELS
- 15   NLTE(I) = NH*WGE(I)/Z  ! LTE populations
+      DO I = 1, NLEVELS
+        W(I) = WCALC(NH, NE, NHE, FLOAT(I), T)
+        G(I) = 2.*I*I
+        WGE(I) = W(I)*G(I)*DEXP(-HC*EHYD(I)/KT)
+        Z = Z + WGE(I)
+      enddo
+      DO I = 1, NLEVELS
+        NLTE(I) = NH*WGE(I)/Z  ! LTE populations
+      enddo
       NHL = NH
       NHEL = NHE
       NEL = NE
       TL = T
  16   CONTINUE
 C
-      DO 20 I = 1, NLEVELS
-      IF (I .LE. NL) THEN 
-        if (npop(I).gt.0.) then
+      DO I = 1, NLEVELS
+        IF (I .LE. NL) THEN 
+          if (npop(I).gt.0.) then
 ! NLTE number densities are given
-          NP(I) = NPOP(I)        ! non-LTE populations for states below NL
-        else 
+            NP(I) = NPOP(I)        ! non-LTE populations for states below NL
+          else 
 ! departure coeffients are given
-          np(i)=b_departure(i)*nlte(i)
-        endif
-      ELSE 
-        NP(I) = NLTE(I)        ! LTE populations otherwise
-      ENDIF
- 20   CONTINUE
+            np(i)=b_departure(i)*nlte(i)
+          endif
+        ELSE 
+          NP(I) = NLTE(I)        ! LTE populations otherwise
+        ENDIF
+      enddo
 
 C
 C  Compute line opacity components
@@ -365,10 +369,12 @@ C
         EHYD(6) = 106632.160D0
         EHYD(7) = 107440.444D0
         EHYD(8) = 107965.051D0
-        DO 1 I = 9, 100
- 1      EHYD(I) = 109678.764D0 - 109677.576D0/I**2
-        DO 2 I = 1, 100
- 2      CONTH(I) = 109678.764D0 - EHYD(I)
+        DO I = 9, 100
+          EHYD(I) = 109678.764D0 - 109677.576D0/I**2
+        enddo
+        DO I = 1, 100
+          CONTH(I) = 109678.764D0 - EHYD(I)
+        enddo
 C
 C  Red cutoff wavelengths in Angstroms.
 C  Arbitrarily chosen to be the same energy below the upper state of the
@@ -476,7 +482,7 @@ C  Based on code by Deane Peterson and Bob Kurucz
 C
       REAL*8 DELW,WAVE,WAVEH,DOP,D,FREQ,FREQNM,RAYLCUT,WAVE4000
       REAL*8 FINEST(14),FINSWT(14)
-      REAL*8 XN2,F,FO,HTOTAL,FREQSQ
+      REAL*8 XN2,FO,HTOTAL,FREQSQ
       DIMENSION STCOMP(5,4),STALPH(34),
      1          ISTAL(4),LNGHAL(4),STWTAL(34),
      2          STCPWT(5,4),LNCOMP(4)
@@ -702,21 +708,21 @@ C
             FINSWT(1) = 1.
          ELSE IF (MMN.GT.1) THEN
             IFINS = LNCOMP(N)
-            DO 1 I = 1,IFINS
-            FINEST(I) = STCOMP(I, N)*1.D7
-            FINSWT(I) = STCPWT(I, N)/XN2
-   1        CONTINUE
+            DO I = 1,IFINS
+              FINEST(I) = STCOMP(I, N)*1.D7
+              FINSWT(I) = STCPWT(I, N)/XN2
+            enddo
          ELSE
 C
 C  eg: Ly alpha IFINS=2, IPOS=1, FINEST=-7.3E9,3.7E9, FINSWT=1/3, 2/3
 C
             IFINS = LNGHAL(N)
             IPOS = ISTAL(N)
-            DO 2 I = 1,IFINS
-            K = IPOS-1+I
-            FINEST(I) = STALPH(K)*1.D7
-            FINSWT(I) = STWTAL(K)/XN2/3.D0
-   2        CONTINUE
+            DO I = 1,IFINS
+              K = IPOS-1+I
+              FINEST(I) = STALPH(K)*1.D7
+              FINSWT(I) = STWTAL(K)/XN2/3.D0
+            enddo
          END IF
       END IF
 C
@@ -987,7 +993,6 @@ C
       REAL*8 WAVE,WAVEH,DELW,DEL,F,FO,CLIGHT,FREQ,FREQNM
       REAL*4 K
       DIMENSION Y1WTM(2,2),XKNMTB(4,3)
-      LOGICAL LYMANALF
       SAVE
 C
 C  Knm constants as defined by Griem (1960, ApJ 132, 883) for the long 
@@ -1451,7 +1456,7 @@ C  Coded by Paul Barklem and Kjell Eriksson, Aug 2003
 C 	
       IMPLICIT NONE
       REAL NH, NE, NHE, NS, TEMP
-      REAL*8 IONH, A0, E, PI, K, CHI, RIH, NEUTR, ION, NS2, NS4 
+      REAL*8 IONH, A0, E, PI, K, CHI, RIH, NEUTR, NS2, NS4 
       REAL*8 F, A, BETAC, X, WNEUTR, WION, X1, X2      
       PARAMETER (IONH=2.17991E-11) 
       PARAMETER (A0=5.29177E-9)
@@ -1616,13 +1621,13 @@ C
       IMPLICIT NONE
       INTEGER N, I, J
       REAL X(*), Y(*), XI, YI
-      REAL XL(N), YL(N), XIL, YIL, XS(3), YLS(3), DY        
+      REAL YL(N), YIL, XS(3), YLS(3), DY        
 C
       J = 0
-      DO 10 I = 1, N
-      YL(I) = LOG10(Y(I))
-      IF (X(I).LT.XI) J = I
- 10   CONTINUE
+      DO I = 1, N
+        YL(I) = LOG10(Y(I))
+        IF (X(I).LT.XI) J = I
+      enddo
       IF (J.EQ.0) J = 1
       IF (J.GT.N-3) J = N-2
 C
@@ -1650,7 +1655,7 @@ C  polynomial interpolation routine
       DIMENSION C(NMAX),D(NMAX)
       NS=1
       DIF=ABS(X-XA(1))
-      DO 11 I=1,N 
+      DO I=1,N 
         DIFT=ABS(X-XA(I))
         IF (DIFT.LT.DIF) THEN
           NS=I
@@ -1658,11 +1663,11 @@ C  polynomial interpolation routine
         ENDIF
         C(I)=YA(I)
         D(I)=YA(I)
-11    CONTINUE
+      enddo
       Y=YA(NS)
       NS=NS-1
-      DO 13 M=1,N-1
-        DO 12 I=1,N-M
+      DO M=1,N-1
+        DO I=1,N-M
           HO=XA(I)-X
           HP=XA(I+M)-X
           W=C(I+1)-D(I)
@@ -1672,7 +1677,7 @@ c          IF(DEN.EQ.0.d0)PAUSE
           DEN=W/DEN
           D(I)=HP*DEN
           C(I)=HO*DEN
-12      CONTINUE
+        enddo
         IF (2*NS.LT.N-M)THEN
           DY=C(NS+1)
         ELSE
@@ -1680,7 +1685,7 @@ c          IF(DEN.EQ.0.d0)PAUSE
           NS=NS-1
         ENDIF
         Y=Y+DY
-13    CONTINUE
+      enddo
       RETURN
       END
 
